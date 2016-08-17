@@ -1,0 +1,29 @@
+{
+  "name": "ng-long-press",
+  "version": "0.1.0",
+  "description": "Directive that handles long press event on any html element",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruzpuz/ng-long-press.git"
+  },
+  "keywords": [
+    "angular",
+    "directive",
+    "angularjs",
+    "longpress",
+    "longclick",
+    "long",
+    "click",
+    "press"
+  ],
+  "author": "Vladimir Ruzic",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/ruzpuz/ng-long-press/issues"
+  },
+  "homepage": "https://github.com/ruzpuz/ng-long-press#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-minify": "0.0.14"
+  }
+}
