@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="ngLongPress" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>ng-long-press demo</title>
+    </head>
+
+    <body>
+        <div ng-controller="ngLongPressController">
+            <div ng-longpress-callback="longPressCallback" ng-longpress-length="1500" ng-long-press> LONG PRESS ME </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+        <script src="../src/ng-long-press.module.js"></script>
+        <script src="../src/ng-long-press.directive.js"></script>
+        <script src="ng-long-press.controller.js"></script>
+
+    </body>
+</html>
