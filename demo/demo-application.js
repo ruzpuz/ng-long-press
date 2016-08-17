@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    function ngLongPressController($scope) {
+    function demoController($scope) {
 
         function longPressCallback() {
             //alert('Long press happened');
@@ -11,9 +11,9 @@
         $scope.longPressCallback = longPressCallback;
 
     }
-    ngLongPressController.$inject = ['$scope'];
+    demoController.$inject = ['$scope'];
 
-    angular.module('ngLongPress')
-        .controller('ngLongPressController', ngLongPressController);
+    angular.module('demo', ['ngLongPress'])
+        .controller('demoController', demoController);
 
 }());

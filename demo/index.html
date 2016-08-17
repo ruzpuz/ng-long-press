@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html ng-app="ngLongPress" lang="en">
+<html ng-app="demo" lang="en">
     <head>
         <meta charset="UTF-8">
         <title>ng-long-press demo</title>
     </head>
 
     <body>
-        <div ng-controller="ngLongPressController">
-            <div ng-longpress-callback="longPressCallback" ng-longpress-length="1500" ng-long-press> LONG PRESS ME </div>
-            <a href="https://www.google.com" ng-longpress-callback="longPressCallback" ng-longpress-length="1500" ng-long-press> LONG PRESS ME </a>
+        <div ng-controller="demoController">
+            <div ng-long-press-callback="longPressCallback" ng-long-press-length="1500" ng-long-press> LONG PRESS - 1500ms</div>
+            <div ng-long-press-callback="longPressCallback" ng-long-press> LONG PRESS - default 500ms </div>
+            <a href="https://www.google.com" ng-long-press-callback="longPressCallback" ng-long-press-length="750" ng-long-press> LONG PRESS LINK </a>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
         <script src="../src/ng-long-press.module.js"></script>
         <script src="../src/ng-long-press.directive.js"></script>
-        <script src="ng-long-press.controller.js"></script>
+        <script src="demo-application.js"></script>
 
     </body>
 </html>
