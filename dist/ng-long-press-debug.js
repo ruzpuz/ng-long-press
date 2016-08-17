@@ -67,7 +67,7 @@
     ngLongPressDirective.$inject = ['$timeout'];
 
     angular
-        .module('ngLongPress')
+        .module('ngLongPress', [])
         .directive('ngLongPress', ngLongPressDirective);
 
 }());
