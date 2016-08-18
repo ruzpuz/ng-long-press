@@ -1,6 +1,6 @@
 {
   "name": "ng-long-press",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Directive that handles long press event on any html element",
   "repository": {
     "type": "git",
