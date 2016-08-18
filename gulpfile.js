@@ -1,4 +1,6 @@
 (function () {
+    'use strict';
+
     var minify = require('gulp-minify'),
         gulp = require('gulp');
 

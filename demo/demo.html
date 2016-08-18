@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="demo" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>ng-long-press demo</title>
+    </head>
+
+    <body>
+        <div ng-controller="demoController">
+            <div style="background-color:lightblue; text-align: center; padding:20px; margin:20px;"
+                 ng-long-press-callback="longPressCallback"
+                 ng-long-press-length="1500"
+                 ng-long-press>
+                LONG PRESS - 1500ms
+            </div>
+            <div style="background-color:lightblue; text-align: center; padding:20px; margin:20px;"
+                 ng-long-press-callback="longPressCallback"
+                 ng-long-press> LONG PRESS - default 500ms
+            </div>
+            <div style="background-color:lightblue; text-align: center; padding:20px; margin:20px;"
+                 ng-long-press-callback="longPressCallback"
+                 ng-long-press-length="750" ng-long-press>
+                This is a div that has urls inside.
+                <a href="https://www.google.com"> LONG PRESS LINK </a>
+                You can press anywhere
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+        <script src="../src/ng-long-press.js"></script>
+        <script src="demo-application.js"></script>
+
+    </body>
+</html>
