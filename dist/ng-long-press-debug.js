@@ -11,7 +11,8 @@
                 var domElem = element[0],
                     length = !!attrs.ngLongPressLength ? attrs.ngLongPressLength : 500,
                     longPressTimer,
-                    clickedElementHref;
+                    clickedElementHref,
+                    clickedElementOrigin;
 
                 function isInt(value) {
                     var x;
@@ -29,18 +30,20 @@
                 }
 
                 function returnHref() {
-                    if (clickedElementHref) {
-                        domElem.setAttribute('href', clickedElementHref);
+                    if (clickedElementOrigin) {
+                        clickedElementOrigin.setAttribute('href', clickedElementHref);
                     }
+                    clickedElementHref = null;
+                    clickedElementOrigin = null;
                 }
                 function removeHref() {
-                    if (domElem) {
-                        clickedElementHref = domElem.href;
-                        domElem.removeAttribute('href');
+                    if (clickedElementOrigin) {
+                        clickedElementHref = clickedElementOrigin.href;
+                        clickedElementOrigin.removeAttribute('href');
                     }
                 }
                 function longPressHappened() {
-                    if (domElem.tagName === 'A') {
+                    if (clickedElementOrigin.tagName === 'A') {
                         removeHref();
                     }
                     $timeout(scope.callback);
@@ -52,7 +55,8 @@
                     $timeout.cancel(longPressTimer);
                     return false;
                 }
-                function clickEventStarted() {
+                function clickEventStarted(event) {
+                    clickedElementOrigin = event.originalTarget;
                     domElem.addEventListener('mouseout', clickEventStopped);
                     domElem.addEventListener('mouseup', clickEventStopped);
                     longPressTimer = $timeout(longPressHappened, length);

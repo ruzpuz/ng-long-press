@@ -2,11 +2,14 @@
 Directive that handles long press event on any html element
 
 ##How to use it
-- Install it from bower (when it becomes available)
+- Install it 
+    
+      bower install ng-long-press
+
 - Make sure that you have included dependency to module you want to use
      
        angular.module('yourModule', ['ngLongPress']);
-       
+  
 - Use the ng-long-press directive on any HTML element that supports mouse events
 
 <pre>
@@ -17,4 +20,5 @@ Directive that handles long press event on any html element
 
 
 **ng-long-press-callback** - mandatory. Type - function
+
 **ng-long-press-length** - optional. Type - integer. Number of milliseconds after which the callback is called.
