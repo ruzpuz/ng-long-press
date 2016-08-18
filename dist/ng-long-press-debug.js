@@ -56,7 +56,7 @@
                     return false;
                 }
                 function clickEventStarted(event) {
-                    clickedElementOrigin = event.originalTarget;
+                    clickedElementOrigin = event.target;
                     domElem.addEventListener('mouseout', clickEventStopped);
                     domElem.addEventListener('mouseup', clickEventStopped);
                     longPressTimer = $timeout(longPressHappened, length);
