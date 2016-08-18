@@ -33,6 +33,8 @@
                     if (clickedElementOrigin) {
                         clickedElementOrigin.setAttribute('href', clickedElementHref);
                     }
+                    clickedElementHref = null;
+                    clickedElementOrigin = null;
                 }
                 function removeHref() {
                     if (clickedElementOrigin) {
