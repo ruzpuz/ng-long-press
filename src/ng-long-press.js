@@ -28,6 +28,18 @@
                     alert('Length is not an integer');
                     return;
                 }
+                function  drownEvent(event) {
+
+                    event.cancel=true;
+                    event.returnValue=false;
+                    event.cancelBubble=true;
+
+                    if (event.stopPropagation) {
+                        event.stopPropagation();
+                    }
+                    if (event.preventDefault) { event.preventDefault(); }
+
+                }
 
                 function returnHref() {
                     if (clickedElementOrigin) {
@@ -49,35 +61,49 @@
                     angular.element(document.body).removeClass('ng-long-press');
                     $timeout(scope.callback);
                 }
-                function clickEventStopped() {
+                function clickEventStopped(event) {
+
+                    drownEvent(event);
+
                     domElem.removeEventListener('mouseout', clickEventStopped);
                     domElem.removeEventListener('mouseup', clickEventStopped);
                     domElem.removeEventListener('touchend', clickEventStopped);
                     domElem.removeEventListener('touchcancel', clickEventStopped);
                     domElem.removeEventListener('touchmove', clickEventStopped);
+
                     $timeout(returnHref);
                     $timeout.cancel(longPressTimer);
+
                     return false;
                 }
                 function clickEventStarted(event) {
                     angular.element(document.body).addClass('ng-long-press');
-                    event.preventDefault();
+
                     clickedElementOrigin = event.target;
+                    drownEvent(event);
+
+                    longPressTimer = $timeout(longPressHappened, length);
+
+
                     domElem.addEventListener('mouseout', clickEventStopped);
                     domElem.addEventListener('mouseup', clickEventStopped);
                     domElem.addEventListener('touchend', clickEventStopped);
                     domElem.addEventListener('touchcancel', clickEventStopped);
                     domElem.addEventListener('touchmove', clickEventStopped);
-                    longPressTimer = $timeout(longPressHappened, length);
+
+
                     return false;
                 }
                 function createCssClass() {
                     var style = document.createElement('style');
 
                     style.type = 'text/css';
+                    style.id = 'ng-long-press-style';
                     style.innerHTML = '.ng-long-press {-webkit-touch-callout: none !important; user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; -webkit-user-select: none !important;}';
 
-                    document.getElementsByTagName('head')[0].appendChild(style);
+                    if(!document.getElementById('ng-long-press-style')) {
+                        document.getElementsByTagName('head')[0].appendChild(style);
+                    }
 
                 }
 
