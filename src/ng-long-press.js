@@ -28,6 +28,18 @@
                     alert('Length is not an integer');
                     return;
                 }
+                function  drownEvent(event) {
+
+                    event.cancel=true;
+                    event.returnValue=false;
+                    event.cancelBubble=true;
+
+                    if (event.stopPropagation) {
+                        event.stopPropagation();
+                    }
+                    if (event.preventDefault) { event.preventDefault(); }
+
+                }
 
                 function returnHref() {
                     if (clickedElementOrigin) {
@@ -49,7 +61,9 @@
                     angular.element(document.body).removeClass('ng-long-press');
                     $timeout(scope.callback);
                 }
-                function clickEventStopped() {
+                function clickEventStopped(event) {
+
+                    drownEvent(event);
 
                     domElem.removeEventListener('mouseout', clickEventStopped);
                     domElem.removeEventListener('mouseup', clickEventStopped);
@@ -65,13 +79,11 @@
                 function clickEventStarted(event) {
                     angular.element(document.body).addClass('ng-long-press');
 
-                    event.cancel=true;
-                    event.returnValue=false;
-                    event.cancelBubble=true;
-                    if (event.stopPropagation) event.stopPropagation();
-                    if (event.preventDefault) event.preventDefault();
-
                     clickedElementOrigin = event.target;
+                    drownEvent(event);
+
+                    longPressTimer = $timeout(longPressHappened, length);
+
 
                     domElem.addEventListener('mouseout', clickEventStopped);
                     domElem.addEventListener('mouseup', clickEventStopped);
@@ -79,10 +91,10 @@
                     domElem.addEventListener('touchcancel', clickEventStopped);
                     domElem.addEventListener('touchmove', clickEventStopped);
 
-                    longPressTimer = $timeout(longPressHappened, length);
 
                     return false;
-                }function createCssClass() {
+                }
+                function createCssClass() {
                     var style = document.createElement('style');
 
                     style.type = 'text/css';
