@@ -46,24 +46,44 @@
                     if (clickedElementOrigin.tagName === 'A') {
                         removeHref();
                     }
+                    angular.element(document.body).removeClass('ng-long-press');
                     $timeout(scope.callback);
                 }
                 function clickEventStopped() {
                     domElem.removeEventListener('mouseout', clickEventStopped);
                     domElem.removeEventListener('mouseup', clickEventStopped);
+                    domElem.removeEventListener('touchend', clickEventStopped);
+                    domElem.removeEventListener('touchcancel', clickEventStopped);
+                    domElem.removeEventListener('touchmove', clickEventStopped);
                     $timeout(returnHref);
                     $timeout.cancel(longPressTimer);
                     return false;
                 }
                 function clickEventStarted(event) {
+                    angular.element(document.body).addClass('ng-long-press');
+                    event.preventDefault();
                     clickedElementOrigin = event.target;
                     domElem.addEventListener('mouseout', clickEventStopped);
                     domElem.addEventListener('mouseup', clickEventStopped);
+                    domElem.addEventListener('touchend', clickEventStopped);
+                    domElem.addEventListener('touchcancel', clickEventStopped);
+                    domElem.addEventListener('touchmove', clickEventStopped);
                     longPressTimer = $timeout(longPressHappened, length);
                     return false;
                 }
+                function createCssClass() {
+                    var style = document.createElement('style');
 
+                    style.type = 'text/css';
+                    style.innerHTML = '.ng-long-press {-webkit-touch-callout: none !important; -webkit-user-select: none !important;}';
+
+                    document.getElementsByTagName('head')[0].appendChild(style);
+
+                }
+
+                createCssClass();
                 domElem.addEventListener('mousedown', clickEventStarted);
+                domElem.addEventListener('touchstart', clickEventStarted);
 
             }
         };
