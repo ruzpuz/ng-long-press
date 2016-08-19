@@ -75,7 +75,7 @@
                     var style = document.createElement('style');
 
                     style.type = 'text/css';
-                    style.innerHTML = '.ng-long-press {-webkit-touch-callout: none !important; -webkit-user-select: none !important;}';
+                    style.innerHTML = '.ng-long-press {-webkit-touch-callout: none !important; user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; -webkit-user-select: none !important;}';
 
                     document.getElementsByTagName('head')[0].appendChild(style);
 
