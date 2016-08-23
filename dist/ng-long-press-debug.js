@@ -12,6 +12,7 @@
                     length = !!attrs.ngLongPressLength ? attrs.ngLongPressLength : 500,
                     longPressTimer,
                     clickedElementHref,
+                    clickedElementCallback,
                     clickedElementOrigin;
 
                 function isInt(value) {
@@ -54,9 +55,23 @@
                         clickedElementOrigin.removeAttribute('href');
                     }
                 }
+                function removeOnClick() {
+                    if (clickedElementOrigin) {
+                        clickedElementCallback = clickedElementOrigin.onclick;
+                        clickedElementOrigin.onclick = null;
+                    }
+                }
+                function returnOnClick() {
+                    if (clickedElementOrigin) {
+                        clickedElementOrigin.onclick = clickedElementCallback;
+                    }
+                }
+
                 function longPressHappened() {
                     if (clickedElementOrigin.tagName === 'A') {
                         removeHref();
+                    } else if (clickedElementOrigin.onclick) {
+                        removeOnClick();
                     }
                     angular.element(document.body).removeClass('ng-long-press');
                     $timeout(scope.callback);
@@ -71,7 +86,9 @@
                     domElem.removeEventListener('touchcancel', clickEventStopped);
                     domElem.removeEventListener('touchmove', clickEventStopped);
 
+                    $timeout(returnOnClick);
                     $timeout(returnHref);
+
                     $timeout.cancel(longPressTimer);
 
                     return false;
@@ -84,13 +101,11 @@
 
                     longPressTimer = $timeout(longPressHappened, length);
 
-
                     domElem.addEventListener('mouseout', clickEventStopped);
                     domElem.addEventListener('mouseup', clickEventStopped);
                     domElem.addEventListener('touchend', clickEventStopped);
                     domElem.addEventListener('touchcancel', clickEventStopped);
                     domElem.addEventListener('touchmove', clickEventStopped);
-
 
                     return false;
                 }
