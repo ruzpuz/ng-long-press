@@ -24,6 +24,12 @@
                 <a href="https://www.google.com"> LONG PRESS LINK </a>
                 You can press anywhere
             </div>
+            <div style="background-color:lightblue; text-align: center; padding:20px; margin:20px;"
+                 ng-long-press-callback="longPressCallback"
+                 ng-long-press-length="750" ng-long-press>
+                <button onclick="alert('a');"> click me </button>
+
+            </div>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>

@@ -4,7 +4,7 @@
     function demoController($scope) {
 
         function longPressCallback() {
-            alert('Long press happened');
+            //alert('Long press happened');
             console.log('Long press happened');
         }
 
