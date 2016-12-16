@@ -1,4 +1,7 @@
 # ng-long-press
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dc01919a64db4ea49800c67cd2eee994)](https://www.codacy.com/app/ruzic-vladimir/ng-long-press?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ruzpuz/ng-long-press&amp;utm_campaign=badger)
+
 Directive that handles long press event on any html element
 
 ##How to use it
